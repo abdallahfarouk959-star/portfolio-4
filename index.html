@@ -46,7 +46,10 @@
                 <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
                 <a href="#"><i class="fa-brands fa-instagram"></i></a>
             </div>
-            <button id="install-app-btn-main" class="btn" type="button"><i class="fa fa-download"></i> Install App</button>
+            <div class="btns-row">
+                <button id="install-app-btn-main" class="btn" type="button"><i class="fa fa-download"></i> Install App</button>
+                <a href="cv.html" class="btn cv-btn" target="_blank"><i class="fa fa-file-alt"></i> CV</a>
+            </div>
         </div>
     </section>
     
@@ -182,14 +185,13 @@
     </section>
     </section>
 <script>
-// Register service worker for PWA
+
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
         navigator.serviceWorker.register('sw.js');
     });
 }
 
-// Show install prompt in main button
 let deferredPrompt;
 const installAppBtnMain = document.getElementById('install-app-btn-main');
 window.addEventListener('beforeinstallprompt', (e) => {
@@ -215,7 +217,7 @@ const nav = document.getElementById('main-nav');
 menuToggle.addEventListener('click', () => {
         nav.classList.toggle('active');
 });
-// Close nav on link click (mobile)
+
 const navBtns = nav.querySelectorAll('a, button');
 navBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -293,7 +295,6 @@ langBtn.addEventListener('click', () => {
         updateLanguage();
 });
 
-// تحديث نص زر التثبيت مع اللغة
 function updateInstallBtnText() {
     if (installAppBtnMain) {
         installAppBtnMain.innerHTML = `<i class="fa fa-download"></i> ${translations[currentLang].installApp}`;
