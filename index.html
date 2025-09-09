@@ -15,6 +15,9 @@
     <title>Portfolio Website</title>
 </head>
 <body>
+    <button id="install-app-btn" class="install-app-fixed" style="display:none;" type="button">
+        <i class="fa fa-download"></i> Install App
+    </button>
     <header>
         <a href="#" class="logo">Portfolio</a>
         <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
@@ -186,26 +189,20 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Show install prompt
+// Show install prompt in a fixed button
 let deferredPrompt;
-const installBtn = document.createElement('button');
-installBtn.textContent = 'Install App';
-installBtn.className = 'install-btn';
-installBtn.style.display = 'none';
-document.body.appendChild(installBtn);
-
+const installAppBtn = document.getElementById('install-app-btn');
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    installBtn.style.display = 'block';
+    installAppBtn.style.display = 'block';
 });
-
-installBtn.addEventListener('click', async () => {
+installAppBtn.addEventListener('click', async () => {
     if (deferredPrompt) {
         deferredPrompt.prompt();
         const { outcome } = await deferredPrompt.userChoice;
         if (outcome === 'accepted') {
-            installBtn.style.display = 'none';
+            installAppBtn.style.display = 'none';
         }
         deferredPrompt = null;
     }
