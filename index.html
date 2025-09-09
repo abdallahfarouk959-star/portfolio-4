@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#b74b4b">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Portfolio Website</title>
@@ -174,11 +179,51 @@
     </section>
     </section>
 <script>
-// Navbar toggle for mobile
+// Register service worker for PWA
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('sw.js');
+    });
+}
+
+// Show install prompt
+let deferredPrompt;
+const installBtn = document.createElement('button');
+installBtn.textContent = 'Install App';
+installBtn.className = 'install-btn';
+installBtn.style.display = 'none';
+document.body.appendChild(installBtn);
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'block';
+});
+
+installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            installBtn.style.display = 'none';
+        }
+        deferredPrompt = null;
+    }
+});
+
 const menuToggle = document.getElementById('menu-toggle');
 const nav = document.getElementById('main-nav');
 menuToggle.addEventListener('click', () => {
-    nav.classList.toggle('active');
+        nav.classList.toggle('active');
+});
+// Close nav on link click (mobile)
+const navBtns = nav.querySelectorAll('a, button');
+navBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        if(window.innerWidth <= 995) {
+            nav.classList.remove('active');
+        }
+    });
 });
 
 const translations = {
@@ -235,7 +280,6 @@ const contactLabels = document.querySelectorAll('.contact-box span');
 const body = document.body;
 let currentLang = 'en';
 
-// عناصر المقدمة والتعليم
 const introTitle = document.querySelector('.home-content h1');
 const introRole = document.querySelector('.home-content h3');
 const introText = document.querySelector('.home-content p');
@@ -248,20 +292,20 @@ langBtn.addEventListener('click', () => {
 });
 
 function updateLanguage() {
-    // Navbar
+
     navLinks[0].textContent = translations[currentLang].home;
     navLinks[1].textContent = translations[currentLang].skills;
     navLinks[2].textContent = translations[currentLang].education;
     navLinks[3].textContent = translations[currentLang].experience;
     navLinks[4].textContent = translations[currentLang].contact;
-    // Button
+
     langBtn.textContent = translations[currentLang].langBtn;
-    // Section Titles
+
     sectionTitles[0].textContent = translations[currentLang].skillsTitle;
     sectionTitles[1].textContent = translations[currentLang].educationTitle;
     sectionTitles[2].textContent = translations[currentLang].experienceTitle;
     sectionTitles[3].textContent = translations[currentLang].contactTitle;
-    // Contact labels
+
     if(contactLabels.length >= 5) {
         contactLabels[0].textContent = translations[currentLang].phone;
         contactLabels[1].textContent = translations[currentLang].email;
@@ -269,14 +313,14 @@ function updateLanguage() {
         contactLabels[3].textContent = translations[currentLang].github;
         contactLabels[4].textContent = translations[currentLang].address;
     }
-    // المقدمة
+
     if(introTitle) introTitle.innerHTML = translations[currentLang].introTitle;
     if(introRole) introRole.innerHTML = translations[currentLang].introRole;
     if(introText) introText.textContent = translations[currentLang].introText;
-    // التعليم
+
     if(eduDegree) eduDegree.textContent = translations[currentLang].eduDegree;
     if(eduUni) eduUni.innerHTML = translations[currentLang].eduUni;
-    // Direction
+
     if(currentLang === 'ar') {
         body.setAttribute('dir', 'rtl');
         body.setAttribute('lang', 'ar');
