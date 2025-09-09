@@ -2,12 +2,14 @@
     display: flex;
     gap: 1.2rem;
     margin-top: 1.2rem;
+    flex-wrap: wrap;
 }
 .cv-btn {
     background: #232323;
     color: #b74b4b;
     border: 2px solid #b74b4b;
     transition: background 0.3s, color 0.3s;
+    display: inline-block;
 }
 .cv-btn:hover {
     background: #b74b4b;
@@ -16,9 +18,21 @@
 .cv-btn i {
     margin-right: 0.7rem;
 }
+/* إظهار زرار Install App فقط على الموبايل والتابلت، وCV فقط على الكمبيوتر */
 @media (max-width: 995px) {
-    .btns-row {
-        display: none;
+    .cv-btn {
+        display: none !important;
+    }
+    #install-app-btn-main {
+        display: inline-block !important;
+    }
+}
+@media (min-width: 996px) {
+    #install-app-btn-main {
+        display: none !important;
+    }
+    .cv-btn {
+        display: inline-block !important;
     }
 }
 /* Fixed Install App Button (top right) */
