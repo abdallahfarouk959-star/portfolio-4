@@ -46,7 +46,7 @@
                 <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
                 <a href="#"><i class="fa-brands fa-instagram"></i></a>
             </div>
-            <a href="#" class="btn">Hire me</a>
+            <button id="install-app-btn-main" class="btn" type="button"><i class="fa fa-download"></i> Install App</button>
         </div>
     </section>
     
@@ -189,24 +189,26 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Show install prompt in a fixed button
+// Show install prompt in main button
 let deferredPrompt;
-const installAppBtn = document.getElementById('install-app-btn');
+const installAppBtnMain = document.getElementById('install-app-btn-main');
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    installAppBtn.style.display = 'block';
+    if (installAppBtnMain) installAppBtnMain.style.display = 'inline-block';
 });
-installAppBtn.addEventListener('click', async () => {
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-            installAppBtn.style.display = 'none';
-        }
-        deferredPrompt = null;
-    }
-});
+if (installAppBtnMain) {
+  installAppBtnMain.addEventListener('click', async () => {
+      if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          if (outcome === 'accepted') {
+              installAppBtnMain.style.display = 'none';
+          }
+          deferredPrompt = null;
+      }
+  });
+}
 
 const menuToggle = document.getElementById('menu-toggle');
 const nav = document.getElementById('main-nav');
@@ -242,7 +244,8 @@ const translations = {
         github: 'GitHub:',
         introTitle: "Hi, It's <span>Abdallah</span>",
         introRole: "I'm a <span></span>",
-        introText: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus labore dolores esse. Odit similique doloribus tenetur doloremque, sunt commodi in ipsa repudiandae debitis deleniti blanditiis quibusdam quaerat neque asperiores ea.',
+    introText: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus labore dolores esse. Odit similique doloribus tenetur doloremque, sunt commodi in ipsa repudiandae debitis deleniti blanditiis quibusdam quaerat neque asperiores ea.',
+    installApp: 'Install App',
         eduDegree: "Bachelor's Degree in Computer Science and Information",
         eduUni: '<a href="https://aswu.edu.eg/" target="_blank" style="color: #b74b4b; text-decoration: underline;">Aswan University</a>'
     },
@@ -264,7 +267,8 @@ const translations = {
         github: 'جيت هاب:',
         introTitle: "مرحباً، أنا <span>عبدالله</span>",
         introRole: "أنا <span></span>",
-        introText: 'مبرمج ومطور مواقع وتطبيقات بخبرة واسعة في أحدث التقنيات. شغوف بالتعلم والعمل الجماعي وتقديم حلول مبتكرة.',
+    introText: 'مبرمج ومطور مواقع وتطبيقات بخبرة واسعة في أحدث التقنيات. شغوف بالتعلم والعمل الجماعي وتقديم حلول مبتكرة.',
+    installApp: 'تثبيت التطبيق',
         eduDegree: "بكالوريوس حاسبات ومعلومات",
         eduUni: '<a href="https://aswu.edu.eg/" target="_blank" style="color: #b74b4b; text-decoration: underline;">جامعة أسوان</a>'
     }
@@ -283,10 +287,18 @@ const introText = document.querySelector('.home-content p');
 const eduDegree = document.querySelector('.education-content h3');
 const eduUni = document.querySelector('.education-content p');
 
+
 langBtn.addEventListener('click', () => {
-    currentLang = currentLang === 'en' ? 'ar' : 'en';
-    updateLanguage();
+        currentLang = currentLang === 'en' ? 'ar' : 'en';
+        updateLanguage();
 });
+
+// تحديث نص زر التثبيت مع اللغة
+function updateInstallBtnText() {
+    if (installAppBtnMain) {
+        installAppBtnMain.innerHTML = `<i class="fa fa-download"></i> ${translations[currentLang].installApp}`;
+    }
+}
 
 function updateLanguage() {
 
@@ -317,6 +329,8 @@ function updateLanguage() {
 
     if(eduDegree) eduDegree.textContent = translations[currentLang].eduDegree;
     if(eduUni) eduUni.innerHTML = translations[currentLang].eduUni;
+
+    updateInstallBtnText();
 
     if(currentLang === 'ar') {
         body.setAttribute('dir', 'rtl');
