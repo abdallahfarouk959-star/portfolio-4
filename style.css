@@ -18,23 +18,6 @@
 .cv-btn i {
     margin-right: 0.7rem;
 }
-/* إظهار زرار Install App فقط على الموبايل والتابلت، وCV فقط على الكمبيوتر */
-@media (max-width: 995px) {
-    .cv-btn {
-        display: none !important;
-    }
-    #install-app-btn-main {
-        display: inline-block !important;
-    }
-}
-@media (min-width: 996px) {
-    #install-app-btn-main {
-        display: none !important;
-    }
-    .cv-btn {
-        display: inline-block !important;
-    }
-}
 /* Fixed Install App Button (top right) */
 .install-app-fixed {
     display: none;
