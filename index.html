@@ -49,6 +49,7 @@
             <div class="btns-row">
                 <button id="install-app-btn-main" class="btn" type="button"><i class="fa fa-download"></i> Install App</button>
                 <a href="cv.html" class="btn cv-btn" target="_blank"><i class="fa fa-file-alt"></i> CV</a>
+                <button id="download-cv-btn" class="btn download-cv-btn" type="button"><i class="fa fa-download"></i> Download CV</button>
             </div>
         </div>
     </section>
@@ -185,6 +186,37 @@
     </section>
     </section>
 <script>
+// زر تحميل السيرة الذاتية مع اختيار اللغة
+const downloadCvBtn = document.getElementById('download-cv-btn');
+if (downloadCvBtn) {
+    downloadCvBtn.addEventListener('click', () => {
+        const msg = currentLang === 'ar' ? 'اختر لغة السيرة الذاتية:\nاضغط موافق للعربي، إلغاء للإنجليزي' : 'Choose CV language:\nOK for Arabic, Cancel for English';
+        const isArabic = window.confirm(msg);
+        const file = isArabic ? 'cv-ar.pdf' : 'cv-en.pdf';
+        const link = document.createElement('a');
+        link.href = file;
+        link.download = file;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+}
+// CV download with language selection
+const cvBtn = document.getElementById('cv-btn');
+if (cvBtn) {
+    cvBtn.addEventListener('click', () => {
+        const lang = currentLang === 'ar' ? 'ar' : 'en';
+        const msg = lang === 'ar' ? 'اختر لغة السيرة الذاتية:\nاضغط موافق للعربي، إلغاء للإنجليزي' : 'Choose CV language:\nOK for Arabic, Cancel for English';
+        const isArabic = window.confirm(msg);
+        const file = isArabic ? 'cv-ar.pdf' : 'cv-en.pdf';
+        const link = document.createElement('a');
+        link.href = file;
+        link.download = file;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+}
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
