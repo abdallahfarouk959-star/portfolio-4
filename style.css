@@ -1,4 +1,116 @@
-/* Language Toggle Button */
+/* Fixed Install App Button (top right) */
+.install-app-fixed {
+    position: fixed;
+    top: 2.2rem;
+    right: 2.2rem;
+    z-index: 1200;
+    background: #b74b4b;
+    color: #fff;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.7rem 2.2rem 0.7rem 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    box-shadow: 0 0 16px #222a;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    display: none;
+    align-items: center;
+    gap: 0.7rem;
+}
+.install-app-fixed i {
+    margin-right: 0.7rem;
+}
+.install-app-fixed:hover {
+    background: #fff;
+    color: #b74b4b;
+    border: 1px solid #b74b4b;
+}
+@media (max-width: 600px) {
+    .install-app-fixed {
+        top: 1.2rem;
+        right: 1.2rem;
+        font-size: 1.1rem;
+        padding: 0.5rem 1.2rem 0.5rem 1rem;
+    }
+}
+
+@media (min-width: 996px) {
+    .install-app-fixed {
+        display: none !important;
+    }
+}
+/* Install App Button */
+.install-btn {
+    position: fixed;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background: #b74b4b;
+    color: #fff;
+    border: none;
+    border-radius: 2rem;
+    padding: 1rem 2.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    box-shadow: 0 0 20px #222a;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    display: none;
+}
+.install-btn:hover {
+    background: #fff;
+    color: #b74b4b;
+    border: 1px solid #b74b4b;
+}
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2.8rem;
+    color: #b74b4b;
+    cursor: pointer;
+    margin-left: 2rem;
+    z-index: 200;
+}
+
+@media (max-width: 995px) {
+    .menu-toggle {
+        display: block;
+    }
+    nav {
+        position: absolute;
+        display: none;
+        top: 70px;
+        right: 5%;
+        width: 60vw;
+        border-left: 3px solid #b74b4b;
+        border-bottom: 3px solid #b74b4b;
+        border-bottom-left-radius: 2rem;
+        padding: 2rem 1rem;
+        background-color: #161616;
+        border-top: 0.1rem solid rgba(0,0,0,0.1);
+        box-shadow: 0 0 20px #222a;
+        z-index: 150;
+    }
+    nav.active {
+        display: block;
+    }
+    nav a, .lang-btn {
+        display: block;
+        font-size: 2rem;
+        margin: 2rem 0;
+        text-align: right;
+    }
+    nav a:hover,
+    nav a.active {
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border-bottom: 0.5rem solid #b74b4b;
+    }
+}
+
 .lang-btn {
     margin-left: 2rem;
     padding: 0.5rem 1.5rem;
@@ -18,7 +130,7 @@
     color: #b74b4b;
     border: 1px solid #b74b4b;
 }
-/* Contact Section Responsive */
+
 .contact {
     background: #161616;
     border-radius: 2rem;
@@ -108,7 +220,7 @@
         font-size: 1.1rem;
     }
 }
-/* Experience Section Responsive */
+
 .experience {
     background: #161616;
     border-radius: 2rem;
@@ -209,7 +321,7 @@
         font-size: 1rem;
     }
 }
-/* Education Section Responsive */
+
 .education {
     background: #161616;
     border-radius: 2rem;
@@ -418,7 +530,7 @@ section{
 }
 
 
-/* Skills Section Responsive */
+
 .skills {
     background: #161616;
     border-radius: 2rem;
@@ -668,4 +780,3 @@ span{
         margin-top: 4rem;
     }
 }
-
