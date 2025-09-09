@@ -1,22 +1,6 @@
 /* Fixed Install App Button (top right) */
 .install-app-fixed {
-    position: fixed;
-    top: 2.2rem;
-    right: 2.2rem;
-    z-index: 1200;
-    background: #b74b4b;
-    color: #fff;
-    border: none;
-    border-radius: 2rem;
-    padding: 0.7rem 2.2rem 0.7rem 1.5rem;
-    font-size: 1.3rem;
-    font-weight: 700;
-    box-shadow: 0 0 16px #222a;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
     display: none;
-    align-items: center;
-    gap: 0.7rem;
 }
 .install-app-fixed i {
     margin-right: 0.7rem;
@@ -25,6 +9,27 @@
     background: #fff;
     color: #b74b4b;
     border: 1px solid #b74b4b;
+}
+@media (max-width: 995px) {
+    .install-app-fixed {
+        display: flex;
+        position: fixed;
+        top: 2.2rem;
+        right: 2.2rem;
+        z-index: 1200;
+        background: #b74b4b;
+        color: #fff;
+        border: none;
+        border-radius: 2rem;
+        padding: 0.7rem 2.2rem 0.7rem 1.5rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+        box-shadow: 0 0 16px #222a;
+        cursor: pointer;
+        transition: background 0.3s, color 0.3s;
+        align-items: center;
+        gap: 0.7rem;
+    }
 }
 @media (max-width: 600px) {
     .install-app-fixed {
@@ -35,11 +40,6 @@
     }
 }
 
-@media (min-width: 996px) {
-    .install-app-fixed {
-        display: none !important;
-    }
-}
 /* Install App Button */
 .install-btn {
     position: fixed;
