@@ -1,4 +1,3 @@
-// Simple service worker for PWA install
 self.addEventListener('install', event => {
   self.skipWaiting();
 });

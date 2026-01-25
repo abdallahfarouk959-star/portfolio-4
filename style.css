@@ -1,103 +1,3 @@
-.download-cv-btn {
-    background: #b74b4b;
-    color: #fff;
-    border: 2px solid #b74b4b;
-    transition: background 0.3s, color 0.3s;
-    display: inline-block;
-}
-.download-cv-btn:hover {
-    background: #fff;
-    color: #b74b4b;
-}
-.download-cv-btn i {
-    margin-right: 0.7rem;
-}
-.btns-row {
-    display: flex;
-    gap: 1.2rem;
-    margin-top: 1.2rem;
-    flex-wrap: wrap;
-}
-.cv-btn {
-    background: #232323;
-    color: #b74b4b;
-    border: 2px solid #b74b4b;
-    transition: background 0.3s, color 0.3s;
-    display: inline-block;
-}
-.cv-btn:hover {
-    background: #b74b4b;
-    color: #fff;
-}
-.cv-btn i {
-    margin-right: 0.7rem;
-}
-
-.install-app-fixed {
-    display: none;
-}
-.install-app-fixed i {
-    margin-right: 0.7rem;
-}
-.install-app-fixed:hover {
-    background: #fff;
-    color: #b74b4b;
-    border: 1px solid #b74b4b;
-}
-@media (max-width: 995px) {
-    .install-app-fixed {
-        display: flex;
-        position: fixed;
-        top: 2.2rem;
-        right: 2.2rem;
-        z-index: 1200;
-        background: #b74b4b;
-        color: #fff;
-        border: none;
-        border-radius: 2rem;
-        padding: 0.7rem 2.2rem 0.7rem 1.5rem;
-        font-size: 1.3rem;
-        font-weight: 700;
-        box-shadow: 0 0 16px #222a;
-        cursor: pointer;
-        transition: background 0.3s, color 0.3s;
-        align-items: center;
-        gap: 0.7rem;
-    }
-}
-@media (max-width: 600px) {
-    .install-app-fixed {
-        top: 1.2rem;
-        right: 1.2rem;
-        font-size: 1.1rem;
-        padding: 0.5rem 1.2rem 0.5rem 1rem;
-    }
-}
-
-
-.install-btn {
-    position: fixed;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-    background: #b74b4b;
-    color: #fff;
-    border: none;
-    border-radius: 2rem;
-    padding: 1rem 2.5rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-    box-shadow: 0 0 20px #222a;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
-    display: none;
-}
-.install-btn:hover {
-    background: #fff;
-    color: #b74b4b;
-    border: 1px solid #b74b4b;
-}
 .menu-toggle {
     display: none;
     background: none;
@@ -107,6 +7,12 @@
     cursor: pointer;
     margin-left: 2rem;
     z-index: 200;
+}
+header{
+  background-color: black;
+  z-index: 999;  
+  position: fixed;
+  width: 100%;
 }
 
 @media (max-width: 995px) {
@@ -674,12 +580,12 @@ span{
 }
 
 .home-content p{
-    font-size: 1.6rem;
+    font-size: 2rem;
 }
 
 .home-img{
     border-radius: 50%;
-}
+}   
 
 .home-img img{
     position: relative;
@@ -699,13 +605,13 @@ span{
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 4rem;
-    height: 4rem;
+    width: 6rem;
+    height: 6rem;
     background-color: transparent;
     border: 0.2rem solid #b74b4b;
-    font-size: 2rem;
+    font-size: 3.5rem;
     border-radius: 50%;
-    margin: 3rem 1.5rem 3rem 0;
+    margin: 1rem 1.5rem 1rem 0;
     transition: 0.3s ease;
     color: #b74b4b;
 }
